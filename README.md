@@ -1,6 +1,5 @@
 # Monan
 
-## Descrição
 Monan é um sistema educacional desenvolvido para auxiliar educadores, coordenadores e alunos em suas tarefas diárias. Nosso principal objetivo é promover uma educação com acessibilidade e livre para todos.
 
 ## Tecnologias utilizadas
