@@ -1,5 +1,7 @@
 package br.com.bforce.monan.enums;
 
+import java.util.Arrays;
+
 public enum TipoUsuarioEnum {
 
 	ALUNO		("A", "Aluno"),
@@ -12,15 +14,15 @@ public enum TipoUsuarioEnum {
 	private String descricao;
 	
 	TipoUsuarioEnum(String codigo, String descricao){
+		this.codigo = codigo;
+		this.descricao = descricao;
 	}
 	
 	public static TipoUsuarioEnum recuperarPorCodigo(String codigo){
-		for (TipoUsuarioEnum tipo : values()){
-			if (tipo.getCodigo().equals(codigo))
-				return tipo;
-		}
-		
-		return null;
+		return Arrays.stream(values())
+    			.filter(tipo -> tipo.codigo.compareTo(codigo) == 0)
+    			.findFirst()
+    			.orElse(null);
 	}
 	
 	public String getCodigo() {

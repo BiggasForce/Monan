@@ -2,26 +2,44 @@ package br.com.bforce.monan.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
+import br.com.bforce.monan.dao.UsuarioDao;
 import br.com.bforce.monan.model.Usuario;
 
-public class UsuarioService implements IUsuarioService{
+@Component
+public class UsuarioService extends ServiceBase<Usuario, Long> implements IUsuarioService, UserDetailsService {
 
+	@Autowired
+	private UsuarioDao dao;
+	
+	@Autowired
+	private PasswordEncoder passEncoder;
+	
+	public UsuarioDao getDao() {
+		return dao;
+	}
+	
 	@Override
 	public Usuario criarNovoUsuario(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		usuario.setSenha(passEncoder.encode(usuario.getSenha()));
+		return getDao().save(usuario);
 	}
 
 	@Override
 	public Usuario salvar(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		usuario.setSenha(passEncoder.encode(usuario.getSenha()));
+		return getDao().save(usuario);
 	}
 
 	@Override
 	public List<Usuario> listarUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Usuario>) getDao().findAll();
 	}
 
 	@Override
@@ -34,6 +52,17 @@ public class UsuarioService implements IUsuarioService{
 	public Usuario login(String email, String senha) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	
+	/**
+	 * USADO PARA FAZER LOGIN (nao mexer)
+	 */
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		// considera o e-mail como username  de login
+		Usuario usuario = dao.findByEmail(email.trim()).orElse(null);
+		return usuario;
 	}
 	
 }
