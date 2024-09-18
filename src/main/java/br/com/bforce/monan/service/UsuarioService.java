@@ -65,4 +65,8 @@ public class UsuarioService extends ServiceBase<Usuario, Long> implements IUsuar
 		return usuario;
 	}
 	
+	public boolean emailJaExistente(String email) {
+		return loadUserByUsername(email) != null;
+	}
+	
 }

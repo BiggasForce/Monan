@@ -10,4 +10,5 @@ public interface IUsuarioService {
 	public List<Usuario> listarUsuarios();
 	public List<Usuario> pesquisar(String termoPesquisa);
 	public Usuario login(String email, String senha);
+	public boolean emailJaExistente(String email);
 }

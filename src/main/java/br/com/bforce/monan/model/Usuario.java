@@ -1,6 +1,7 @@
 package br.com.bforce.monan.model;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.List;
 
@@ -60,6 +61,18 @@ public class Usuario implements UserDetails{
 		this.tipoUsuarioCod = usuarioDTO.getTipoUsuario();
 		this.dataCriacao = LocalDateTime.now();
 		this.dataNascimento = usuarioDTO.getDataNascimento();
+	}
+	
+	public Usuario(RegisterDTO regDTO) {
+		this.nome = regDTO.getNome();
+		this.email = regDTO.getEmail();
+		this.senha = regDTO.getSenha();
+		
+		//
+		// por padrão cria todos os usuários registrados pelo sistema como ALUNO.
+		this.tipoUsuarioCod = TipoUsuarioEnum.ALUNO.getCodigo();
+		this.dataCriacao = LocalDateTime.now();
+		this.dataNascimento = LocalDateTime.ofInstant(regDTO.getDataNascimento().toInstant(), ZoneId.systemDefault());
 	}
 	
 	public Long getId() {

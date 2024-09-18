@@ -15,8 +15,8 @@ import br.com.bforce.monan.model.Disciplina;
 import br.com.bforce.monan.service.IDisciplinaService;
 
 @RestController
-@RequestMapping(value="/disciplinas")
-@CrossOrigin
+@RequestMapping(value="/monan/disciplinas")
+@CrossOrigin(origins = "*")
 public class DisciplinaController {
 
 	@Autowired

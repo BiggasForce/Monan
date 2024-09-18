@@ -1,6 +1,6 @@
 -- Script para criação do banco de dados
 --
--- última atualização: 13/09/24
+-- última atualização: 14/09/24
 
 
 create table usuario(
