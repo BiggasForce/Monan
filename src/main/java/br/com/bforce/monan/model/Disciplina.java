@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "disciplina")
 public class Disciplina implements Serializable{
-	private static final long serialVersionUID = 785484915621427159L;
+	private static final long serialVersionUID = 785484915621427159L; 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_disciplina")

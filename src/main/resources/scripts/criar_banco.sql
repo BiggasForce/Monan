@@ -34,3 +34,16 @@ create sequence seq_disciplina
 	start with 1
 	increment by 10
 ;
+
+create table nota(
+	id 					serial 			primary key,
+	valor 				integer		 	not null,
+	dataLancamento		timestamp,		
+	usuario_id			integer 		REFERENCES usuario(id),
+    disciplina_id 		integer 		REFERENCES disciplina(id)	
+	);
+	
+create sequence seq_nota
+	start with 1
+	increment by 1
+;
