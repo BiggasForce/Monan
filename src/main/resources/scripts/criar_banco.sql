@@ -1,6 +1,6 @@
 -- Script para criação do banco de dados
 --
--- última atualização: 13/09/24
+-- última atualização: 20/09/24
 
 
 create table usuario(
@@ -37,7 +37,7 @@ create sequence seq_disciplina
 
 create table nota(
 	id 					serial 			primary key,
-	valor 				integer		 	not null,
+	valor 				numeric(2,3)		 	not null,
 	dataLancamento		timestamp,		
 	usuario_id			integer 		REFERENCES usuario(id),
     disciplina_id 		integer 		REFERENCES disciplina(id)	

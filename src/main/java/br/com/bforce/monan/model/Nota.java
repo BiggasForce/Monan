@@ -22,10 +22,10 @@ public class Nota implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_nota" )
 	@SequenceGenerator(name = "seq_nota", sequenceName= "seq_nota", allocationSize =1 ) 
-	private long id;
+	private Long id;
 	
-	@Column(precision = 2, scale = 3, nullable= false)
-	private  double valor;
+	@Column(nullable= false)
+	private  Double valor;
 	
 	@Column(nullable = false)
 	private LocalDateTime dataLancamento;
