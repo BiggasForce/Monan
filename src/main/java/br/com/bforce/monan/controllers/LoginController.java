@@ -15,8 +15,8 @@ import br.com.bforce.monan.model.RegisterDTO;
 import br.com.bforce.monan.service.IAutenticacaoService;
 
 @RestController
-@RequestMapping("/auth")
-@CrossOrigin(origins = "*")
+@RequestMapping(value="/auth")
+@CrossOrigin("*")
 public class LoginController {
 	
 	@Autowired

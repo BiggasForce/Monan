@@ -9,7 +9,7 @@ import br.com.bforce.monan.service.IUsuarioService;
 
 @RestController
 @RequestMapping(value="/monan/usuarios")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
 public class UsuariosController {
 	
 	@Autowired
