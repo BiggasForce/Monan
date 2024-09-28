@@ -14,4 +14,26 @@ public abstract class ServiceBase<T, ID> {
 	protected String formatarString(String texto){
 		return texto.trim();
 	}
+	
+	protected Long extrairId(String token)
+	{
+		token = token.replaceAll("\"", "");
+		String id = "";
+		
+		switch (token.length()) {
+			case 11:
+				id = token.substring(1, 2);
+				break;
+			case 12:
+				id = token.substring(1, 3);
+				break;
+			case 13:
+				id = token.substring(1, 4);
+				break;
+			case 14:
+				id = token.substring(1, 5);
+		}
+		
+		return Long.parseLong(id);
+	}
 }

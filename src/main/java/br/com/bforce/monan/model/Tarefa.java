@@ -8,18 +8,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "disciplina")
-public class Disciplina implements Serializable{
-	private static final long serialVersionUID = 785484915621427159L; 
+@Table (name = "tarefa")
+public class Tarefa implements Serializable{
+	private static final long serialVersionUID = 785481915621427159L; 
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_disciplina")
-	@SequenceGenerator(name = "seq_disciplina", sequenceName = "seq_disciplina",  allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tarefa")
+	@SequenceGenerator(name = "seq_tarefa", sequenceName = "seq_tarefa",  allocationSize=1)
 	private Long id;
 	
 	@Column(length=500, nullable=false)
@@ -28,10 +28,10 @@ public class Disciplina implements Serializable{
 	@Column(length=5000)
 	private String descricao;
 	
-	@ManyToMany(mappedBy = "disciplinas") 
-    private List<Usuario> alunos;
+	@OneToMany(mappedBy="tarefa")
+	private List<Nota> notas;
 	
-	public Disciplina() {
+	public Tarefa() {
 	}
 
 	public Long getId() {

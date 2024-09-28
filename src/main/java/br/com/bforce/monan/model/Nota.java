@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -24,19 +23,19 @@ public class Nota implements Serializable{
 	@SequenceGenerator(name = "seq_nota", sequenceName= "seq_nota", allocationSize =1 ) 
 	private long id;
 	
-	@Column(precision = 2, scale = 3, nullable= false)
-	private  double valor;
+	@Column(nullable= false)
+	private  Double valor;
 	
 	@Column(nullable = false)
 	private LocalDateTime dataLancamento;
 
 	@ManyToOne 
 	@JoinColumn(name = "usuario_id")
-	private Usuario idAluno;
+	private Usuario aluno;
 	
-	@OneToOne 
-	@JoinColumn(name = "disciplina_id")
-	private Disciplina idDiciplina;
+	@ManyToOne 
+	@JoinColumn(name = "tarefa_id")
+	private Tarefa tarefa;
 	
 	public Nota() {
 		
@@ -46,8 +45,8 @@ public class Nota implements Serializable{
 		this.id = notaDTO.getId();
 		this.valor = notaDTO.getValor();
 		this.dataLancamento = LocalDateTime.now();
-		this.idAluno = notaDTO.getIdAluno();
-		this.idDiciplina = notaDTO.getIdDisciplina();
+		this.aluno = notaDTO.getAluno();
+		this.tarefa = notaDTO.getTarefa();
 	}
 	
 	public long getId() {
@@ -72,6 +71,22 @@ public class Nota implements Serializable{
 
 	public void setDataLancamento(LocalDateTime dataLancamento) {
 		this.dataLancamento = dataLancamento;
+	}
+
+	public Usuario getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Usuario aluno) {
+		this.aluno = aluno;
+	}
+
+	public Tarefa getTarefa() {
+		return tarefa;
+	}
+
+	public void setTarefa(Tarefa tarefa) {
+		this.tarefa = tarefa;
 	}
 	
 }

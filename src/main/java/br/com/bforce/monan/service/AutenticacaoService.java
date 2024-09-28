@@ -1,5 +1,7 @@
 package br.com.bforce.monan.service;
 
+import java.security.SecureRandom;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -16,6 +18,11 @@ import br.com.bforce.monan.security.jwt.JWTUtils;
 
 @Component
 public class AutenticacaoService implements IAutenticacaoService{
+	
+	//
+	// login podre gambiarra 2200.87
+	private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final SecureRandom random = new SecureRandom();
 	
 	@Autowired
 	private AuthenticationManager authenticationMenager;
@@ -41,7 +48,8 @@ public class AutenticacaoService implements IAutenticacaoService{
 			
 			Usuario usuarioLogado = (Usuario) authentication.getPrincipal();
 			
-			String token = jwtUtils.generateToken(usuarioLogado);
+			//String token = jwtUtils.generateToken(usuarioLogado);
+			String token = gerarTokenPeloId(usuarioLogado.getId());
 			
 			return new AcessoDTO(token);
 		}
@@ -68,10 +76,28 @@ public class AutenticacaoService implements IAutenticacaoService{
 		}
 		catch (Exception e) {
 			// TODO falha ao registrar
-			
 			return "Erro ao registrar usuário";
 		}
 	}
 	
-	
+	private String gerarTokenPeloId(Long id)
+	{
+		StringBuilder codigo = new StringBuilder();
+		for (int i = 0; i <= 10; i++) {
+			
+			if (i == 1)
+			{
+				//
+				// adiciona o id na 2 casa
+				codigo.append(id.toString());
+			}
+			else
+			{
+	            int index = random.nextInt(CHARACTERS.length());
+	            codigo.append(CHARACTERS.charAt(index));
+			}
+        }
+		
+		return codigo.toString();
+	}
 }

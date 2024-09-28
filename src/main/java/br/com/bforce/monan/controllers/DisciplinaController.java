@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import br.com.bforce.monan.service.IDisciplinaService;
 
 @RestController
 @RequestMapping(value="/monan/disciplinas")
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
+@CrossOrigin("*")
 public class DisciplinaController {
 
 	@Autowired
@@ -32,9 +32,17 @@ public class DisciplinaController {
 		return ResponseEntity.badRequest().build();
 	}
 	
-	@GetMapping
-//	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-	public ResponseEntity<List<Disciplina>> buscarDisciplinas() {
-		return ResponseEntity.ok(service.listarDisciplinas());
+	@GetMapping("/{token}")
+	public ResponseEntity<List<Disciplina>> buscarDisciplinas(@PathVariable String token) {
+		try
+		{
+			List<Disciplina> disciplinas = service.listarDisciplinas(token);
+			
+			return ResponseEntity.ok(disciplinas);
+		}
+		catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }

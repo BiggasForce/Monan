@@ -7,8 +7,8 @@ public class NotaDTO {
 	private long id;
 	private double valor;
 	private LocalDate dataLancamento;
-	private Usuario idAluno;
-	private Disciplina idDisciplina;
+	private Usuario aluno;
+	private Tarefa tarefa;
 	
 	public NotaDTO() {
 		
@@ -31,18 +31,17 @@ public class NotaDTO {
 	public void setDataLancamento(LocalDate dataLancamento) {
 		this.dataLancamento = dataLancamento;
 	}
-	public Usuario getIdAluno() {
-		return idAluno;
+	public Usuario getAluno() {
+		return aluno;
 	}
-	public void setIdAluno(Usuario idAluno) {
-		this.idAluno = idAluno;
+	public void setAluno(Usuario aluno) {
+		this.aluno = aluno;
 	}
-	public Disciplina getIdDisciplina() {
-		return idDisciplina;
+	public Tarefa getTarefa() {
+		return tarefa;
 	}
-	public void setIdDisciplina(Disciplina idDisciplina) {
-		this.idDisciplina = idDisciplina;
+	public void setTarefa(Tarefa tarefa) {
+		this.tarefa = tarefa;
 	}
-	
 	
 }

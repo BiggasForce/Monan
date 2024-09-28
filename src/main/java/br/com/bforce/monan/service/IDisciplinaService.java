@@ -8,6 +8,6 @@ public interface IDisciplinaService {
 	
 	public Disciplina criarNovaDisciplina(Disciplina Disciplina);
 	public Disciplina salvar(Disciplina Disciplina);
-	public List<Disciplina> listarDisciplinas();
+	public List<Disciplina> listarDisciplinas(String token) throws Exception;
 	public List<Disciplina> pesquisar(String termoPesquisa);
 }

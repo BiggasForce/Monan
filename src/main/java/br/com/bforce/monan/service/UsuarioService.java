@@ -69,4 +69,9 @@ public class UsuarioService extends ServiceBase<Usuario, Long> implements IUsuar
 		return loadUserByUsername(email) != null;
 	}
 	
+	public Usuario buscarPorId(Long id)
+	{
+		return getDao().findById(id).orElse(null);
+	}
+	
 }
