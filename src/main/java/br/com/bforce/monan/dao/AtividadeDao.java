@@ -7,7 +7,5 @@ import java.util.List;
 
 public interface AtividadeDao extends CrudRepository<Atividade, Long>{
 	
-	public List<Atividade> findAllByNameContaining(String key);
-
-	
+	public List<Atividade> findAllByNomeContaining(String key);
 }

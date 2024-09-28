@@ -2,11 +2,16 @@ package br.com.bforce.monan.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import br.com.bforce.monan.dao.AtividadeDao;
 import br.com.bforce.monan.model.Atividade;
 
+@Component
 public class AtividadeService extends ServiceBase<Atividade, Long> implements IAtividadeService{
 
+	@Autowired
 	private AtividadeDao dao;
 	
 	public AtividadeDao getDao() {
@@ -29,7 +34,7 @@ public class AtividadeService extends ServiceBase<Atividade, Long> implements IA
 
 	@Override
 	public List<Atividade> pesquisarAtividade(String termoPesquisa) {
-		return getDao().findAllByNameContaining(termoPesquisa);
+		return getDao().findAllByNomeContaining(termoPesquisa);
 	}
 
 }
