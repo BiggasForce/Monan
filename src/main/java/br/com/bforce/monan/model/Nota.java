@@ -21,7 +21,7 @@ public class Nota implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_nota" )
 	@SequenceGenerator(name = "seq_nota", sequenceName= "seq_nota", allocationSize =1 ) 
-	private long id;
+	private Long id;
 	
 	@Column(nullable= false)
 	private  Double valor;
@@ -34,19 +34,18 @@ public class Nota implements Serializable{
 	private Usuario aluno;
 	
 	@ManyToOne 
-	@JoinColumn(name = "tarefa_id")
-	private Tarefa tarefa;
+	@JoinColumn(name = "atividade_id")
+	private Atividade atividade;
 	
 	public Nota() {
 		
 	}
-	
 	public Nota(NotaDTO notaDTO) {
 		this.id = notaDTO.getId();
 		this.valor = notaDTO.getValor();
 		this.dataLancamento = LocalDateTime.now();
 		this.aluno = notaDTO.getAluno();
-		this.tarefa = notaDTO.getTarefa();
+		this.atividade = notaDTO.getAtividade();
 	}
 	
 	public long getId() {
@@ -80,13 +79,13 @@ public class Nota implements Serializable{
 	public void setAluno(Usuario aluno) {
 		this.aluno = aluno;
 	}
-
-	public Tarefa getTarefa() {
-		return tarefa;
+	public Atividade getAtividade() {
+		return atividade;
 	}
-
-	public void setTarefa(Tarefa tarefa) {
-		this.tarefa = tarefa;
+	public void setAtividade(Atividade atividade) {
+		this.atividade = atividade;
 	}
-	
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
 }

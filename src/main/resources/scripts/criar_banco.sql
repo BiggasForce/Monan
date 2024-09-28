@@ -1,6 +1,10 @@
 -- Script para criação do banco de dados
 --
+<<<<<<< HEAD
 -- última atualização: 14/09/24
+=======
+-- última atualização: 20/09/24
+>>>>>>> origin/criacao_entidades
 
 
 create table usuario(
@@ -36,20 +40,20 @@ create sequence seq_disciplina
 ;
 
 -- 28/09
-create table tarefa(
-	id 					serial 			primary key,
-	nome 				varchar(500) 	not null,
-	descricao			varchar(5000)
-	dataInicio			timestamp,
-	dataTermino			timestamp,	
-	disciplina_id		integer			references disciplina(id)	
-    tarefa_id 			integer 		references tarefa(id)	
-	);
-	
-create sequence seq_tarefa
-	start with 1
-	increment by 1
-;
+--create table tarefa(
+--	id 					serial 			primary key,
+--	nome 				varchar(500) 	not null,
+--	descricao			varchar(5000)
+--	dataInicio			timestamp,
+--	dataTermino			timestamp,	
+--	disciplina_id		integer			references disciplina(id)	
+--    tarefa_id 			integer 		references tarefa(id)	
+--	);
+--	
+--create sequence seq_tarefa
+--	start with 1
+--	increment by 1
+--;
 
 create table nota(
 	id 					serial 			primary key,
@@ -57,9 +61,24 @@ create table nota(
 	dataLancamento		timestamp,		
 	usuario_id			integer 		REFERENCES usuario(id),
     atividade_id 		integer 		REFERENCES atividade(id)	
-	);
+);
 	
 create sequence seq_nota
+	start with 1
+	increment by 1
+;
+
+
+create table atividade (
+	id 					serial 			primary key,
+	nome 				varchar(500)	not null,
+	descricao			varchar(5000),
+	dataLancamento		timestamp,		
+	nota_id				integer			REFERENCES nota(id),
+    disciplina_id 		integer 		REFERENCES disciplina(id)	
+);
+	
+create sequence seq_atividade
 	start with 1
 	increment by 1
 ;

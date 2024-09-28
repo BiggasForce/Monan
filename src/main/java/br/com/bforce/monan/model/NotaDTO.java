@@ -8,7 +8,7 @@ public class NotaDTO {
 	private double valor;
 	private LocalDate dataLancamento;
 	private Usuario aluno;
-	private Tarefa tarefa;
+	private Atividade atividade;
 	
 	public NotaDTO() {
 		
@@ -37,11 +37,10 @@ public class NotaDTO {
 	public void setAluno(Usuario aluno) {
 		this.aluno = aluno;
 	}
-	public Tarefa getTarefa() {
-		return tarefa;
+	public Atividade getAtividade() {
+		return atividade;
 	}
-	public void setTarefa(Tarefa tarefa) {
-		this.tarefa = tarefa;
+	public void setAtividade(Atividade atividade) {
+		this.atividade = atividade;
 	}
-	
 }

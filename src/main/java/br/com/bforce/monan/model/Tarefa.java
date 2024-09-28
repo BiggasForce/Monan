@@ -28,8 +28,8 @@ public class Tarefa implements Serializable{
 	@Column(length=5000)
 	private String descricao;
 	
-	@OneToMany(mappedBy="tarefa")
-	private List<Nota> notas;
+//	@OneToMany(mappedBy="tarefa")
+//	private List<Nota> notas;
 	
 	public Tarefa() {
 	}
