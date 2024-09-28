@@ -38,10 +38,11 @@ public class Nota implements Serializable{
 	@JoinColumn(name = "disciplina_id")
 	private Disciplina idDiciplina;
 	
+	
+	
 	public Nota() {
 		
 	}
-	
 	public Nota(NotaDTO notaDTO) {
 		this.id = notaDTO.getId();
 		this.valor = notaDTO.getValor();

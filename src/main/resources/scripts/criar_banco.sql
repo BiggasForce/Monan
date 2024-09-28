@@ -47,3 +47,17 @@ create sequence seq_nota
 	start with 1
 	increment by 1
 ;
+
+create table atividade(
+	id 					serial 			primary key,
+	nome 				varchar(500)	not null,
+	descricao			varchar(5000),
+	dataLancamento		timestamp,		
+	nota_id				integer			REFERENCES nota(id),
+    disciplina_id 		integer 		REFERENCES disciplina(id)	
+	);
+	
+create sequence seq_atividade
+	start with 1
+	increment by 1
+;
