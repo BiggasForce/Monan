@@ -7,7 +7,7 @@ public interface IAtividadeService {
 
 		public Atividade criarAtividade(Atividade atividade);
 		public Atividade editarAtividade(Atividade atividade);
-		public List<Atividade> listarAtividades();
+		public List<Atividade> listarAtividades(String token);
 		public List<Atividade> pesquisarAtividade(String termoPesquisa);
 		
 }

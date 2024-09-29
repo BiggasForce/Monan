@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import br.com.bforce.monan.model.Atividade;
 import br.com.bforce.monan.service.IAtividadeService;
 
 @RestController
-@RequestMapping(value="/atividade")
+@RequestMapping(value="/monan/atividades")
 @CrossOrigin("*")
 public class AtividadeController {
 	
@@ -31,9 +32,19 @@ public class AtividadeController {
 		return ResponseEntity.badRequest().build();
 	}
 	
-	@GetMapping 
-	public ResponseEntity <List<Atividade>> listarAtividades (){
-		return ResponseEntity.ok(service.listarAtividades());
+	@GetMapping("/{token}")
+	public ResponseEntity <List<Atividade>> listarAtividades (@PathVariable String token){
+		try
+		{
+			List<Atividade> atividades = service.listarAtividades(token);
+			
+			return ResponseEntity.ok(atividades);
+		}
+		catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
+		}
+		
 		
 	}
 	

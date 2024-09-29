@@ -3,12 +3,15 @@ package br.com.bforce.monan.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -28,8 +31,12 @@ public class Disciplina implements Serializable{
 	@Column(length=5000)
 	private String descricao;
 	
-	@ManyToMany(mappedBy = "disciplinas") 
+	@ManyToMany(mappedBy = "disciplinas")
+	@JsonIgnore
     private List<Usuario> alunos;
+	
+	@OneToMany(mappedBy = "disciplina")
+	private List<Atividade> atividades;
 	
 	public Disciplina() {
 	}
@@ -56,5 +63,21 @@ public class Disciplina implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public List<Usuario> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Usuario> alunos) {
+		this.alunos = alunos;
+	}
+
+	public List<Atividade> getAtividades() {
+		return atividades;
+	}
+
+	public void setAtividades(List<Atividade> atividades) {
+		this.atividades = atividades;
 	}
 }

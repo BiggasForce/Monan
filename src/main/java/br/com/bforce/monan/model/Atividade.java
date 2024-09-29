@@ -2,6 +2,8 @@ package br.com.bforce.monan.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,15 +34,14 @@ public class Atividade {
 	
 	@ManyToOne
 	@JoinColumn(name="disciplina_id")
-	private Disciplina idDisciplina;
+	@JsonIgnore
+	private Disciplina disciplina;
 	
 	@ManyToOne
 	@JoinColumn(name="nota_id")
-	private Nota idNota;
+	private Nota nota;
 
-	
 	public Atividade(){
-		
 	}
 	
 	public Atividade(AtividadeDTO atividadeDTO) {
@@ -49,8 +50,8 @@ public class Atividade {
 		this.nome = atividadeDTO.getNome();
 		this.dataEntrega = atividadeDTO.getDataEntrega();
 		this.descricao = atividadeDTO.getDescricao();
-		this.idDisciplina = atividadeDTO.getIdDisciplina();
-		this.idNota = atividadeDTO.getIdNota();
+		this.disciplina = atividadeDTO.getIdDisciplina();
+		this.nota = atividadeDTO.getIdNota();
 		
 	}
 	
@@ -88,19 +89,19 @@ public class Atividade {
 		this.descricao = descricao;
 	}
 
-	public Disciplina getIdDisciplina() {
-		return idDisciplina;
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
 
-	public void setIdDisciplina(Disciplina idDisciplina) {
-		this.idDisciplina = idDisciplina;
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
-	public Nota getIdNota() {
-		return idNota;
+	public Nota getNota() {
+		return nota;
 	}
 
-	public void setIdNota(Nota idNota) {
-		this.idNota = idNota;
+	public void setNota(Nota nota) {
+		this.nota = nota;
 	}
 }
